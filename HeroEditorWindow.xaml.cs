@@ -29,6 +29,11 @@ namespace GUI_Lab04
             this.DataContext = vm;
         }
 
+        private void Vm_EditedDone(object? sender, EventArgs e)
+        {
+            this.DialogResult = true;
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             foreach (var item in stack.Children)
