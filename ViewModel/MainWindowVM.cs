@@ -41,7 +41,7 @@ namespace GUI_Lab04.ViewModel
             {
                 SetProperty(ref selectedHeroLeft, value);
                 (AddToArmyCommand as RelayCommand).NotifyCanExecuteChanged();
-                (RemoveFromArmyCommand as RelayCommand).NotifyCanExecuteChanged();
+                (EditHeroCommand as RelayCommand).NotifyCanExecuteChanged();
             }
         }
 
@@ -51,7 +51,7 @@ namespace GUI_Lab04.ViewModel
             set
             {
                 SetProperty(ref selectedHeroRight, value);
-                (EditHeroCommand as RelayCommand).NotifyCanExecuteChanged();
+                (RemoveFromArmyCommand as RelayCommand).NotifyCanExecuteChanged();
             }
         }
 
