@@ -2,6 +2,7 @@
 using GUI_Lab04.Model;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace GUI_Lab04.ViewModel
 {
@@ -21,6 +23,16 @@ namespace GUI_Lab04.ViewModel
 
         public ObservableCollection<Hero> armyLeft;
         public ObservableCollection<Hero> armyRight;
+
+        public double AvgPower
+        {
+            get { return logic.AvgPower; }
+        }
+
+        public double AvgSpeed
+        {
+            get { return logic.AvgSpeed; }
+        }
 
         public Hero SelectedFromLeft
         {
@@ -39,6 +51,10 @@ namespace GUI_Lab04.ViewModel
                 SetProperty(ref selectedHeroRight, value);
             }
         }
+
+        public ICommand AddToArmyCommand { get; set; }
+        public ICommand RemoveFromArmyCommand { get; set; }
+        public ICommand EditHeroCommand { get; set; }
 
         public static bool IsInDesignMode
         {
@@ -72,6 +88,16 @@ namespace GUI_Lab04.ViewModel
             armyRight.Add(armyLeft[5].DeepCopy());
 
             logic.SetupArmies(armyLeft, armyRight);
+
+            AddToArmyCommand = new RelayCommand(() => logic.AddToArmy(SelectedFromLeft), () => SelectedFromLeft != null);
+            RemoveFromArmyCommand = new RelayCommand(() => logic.RemoveFromArmy(SelectedFromRight), () => SelectedFromRight != null);
+            EditHeroCommand = new RelayCommand(() => logic.EditHero(SelectedFromLeft), () => SelectedFromLeft != null);
+
+            Messenger.Register<MainWindowVM, string, string>(this, "HeroInfo", (recipient, msg) =>
+            {
+                OnPropertyChanged("AvgPower");
+                OnPropertyChanged("AvgSpeed");
+            });
         }
     }
 }

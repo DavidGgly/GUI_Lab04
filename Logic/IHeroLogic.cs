@@ -8,6 +8,9 @@ namespace GUI_Lab04.Logic
 {
     public interface IHeroLogic
     {
+        double AvgPower { get; }
+        double AvgSpeed { get; }
+
         void AddToArmy(Hero heroToAdd);
         void EditHero(Hero heroToEdit);
         void RemoveFromArmy(Hero heroToRemove);
