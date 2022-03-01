@@ -19,17 +19,14 @@ namespace GUI_Lab04.Logic
         IMessenger messenger;
         IHeroEditorService editorService;
 
-        public double AvgPower => heroesRight.Count != 0 ? heroesRight.Average(p => p.Power) : 0;
+        public double AvgPower => heroesRight.Count != 0 ? Math.Round(heroesRight.Average(p => p.Power), 2) : 0;
 
-        public double AvgSpeed => heroesRight.Count != 0 ? heroesRight.Average(s => s.Speed) : 0;
+        public double AvgSpeed => heroesRight.Count != 0 ? Math.Round(heroesRight.Average(s => s.Speed), 2) : 0;
 
-        public HeroLogic(IMessenger messenger)
+        public HeroLogic(IMessenger messenger, IHeroEditorService editor)
         {
             this.messenger = messenger;
-        }
-
-        public HeroLogic()
-        {
+            this.editorService = editor;
         }
 
         public void SetupArmies(IList<Hero> leftArmy, IList<Hero> rightArmy)
@@ -42,7 +39,8 @@ namespace GUI_Lab04.Logic
         {
             if (heroToAdd != null)
             {
-                heroesRight.Add(heroToAdd);
+                heroesRight.Add(heroToAdd.DeepCopy());
+                messenger.Send("Hero added", "HeroInfo");
             }
         }
 
@@ -51,6 +49,7 @@ namespace GUI_Lab04.Logic
             if (heroToRemove != null)
             {
                 heroesRight.Remove(heroToRemove);
+                messenger.Send("Hero removed", "HeroInfo");
             }
         }
 

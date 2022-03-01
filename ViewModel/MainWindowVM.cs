@@ -83,10 +83,10 @@ namespace GUI_Lab04.ViewModel
             ArmyLeft = new ObservableCollection<Hero>();
             ArmyRight = new ObservableCollection<Hero>();
 
-            if (File.Exists("jsonLeft.json") && File.Exists("jsonRight.json"))
+            if (File.Exists("armyLeft.json") && File.Exists("armyRight.json"))
             {
-                var armyLeftJson = JsonConvert.DeserializeObject<Hero[]>(File.ReadAllText("jsonLeft.json"));
-                var armyRightJson = JsonConvert.DeserializeObject<Hero[]>(File.ReadAllText("jsonRight.json"));
+                var armyLeftJson = JsonConvert.DeserializeObject<Hero[]>(File.ReadAllText("armyLeft.json"));
+                var armyRightJson = JsonConvert.DeserializeObject<Hero[]>(File.ReadAllText("armyRight.json"));
 
                 armyLeftJson?.ToList().ForEach(x => ArmyLeft.Add(x));
                 armyRightJson?.ToList().ForEach(x => ArmyRight.Add(x));

@@ -1,4 +1,5 @@
 ﻿using GUI_Lab04.Logic;
+using GUI_Lab04.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Messaging;
@@ -22,6 +23,7 @@ namespace GUI_Lab04
             Ioc.Default.ConfigureServices(
                 new ServiceCollection()
                 .AddSingleton<IHeroLogic, HeroLogic>()
+                .AddSingleton<IHeroEditorService, HeroEditorViaWindow>()
                 .AddSingleton<IMessenger>(WeakReferenceMessenger.Default)
                 .BuildServiceProvider()
                 );
