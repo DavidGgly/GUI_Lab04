@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "oDXFdTyjXEJ8g7teUd1MtYVZp/T8F8+9qNFsV2HZAtXNMH/Yd836Y6uFi51UMtZm9IB64sarA0uTnQsFb/Q3xw==",
+  "dgSpecHash": "2SusggQ9c7gUjYin782+3tC73i6wbPZExiGirEiEiB7kkgQevgCH/q6pZucdJDxnAmuJOqYKpJWhc1nco4FueA==",
   "success": true,
   "projectFilePath": "C:\\Users\\gerge\\OneDrive\\Documents\\Visual Studio 2022\\Projects\\GUI_Lab04\\GUI_Lab04\\GUI_Lab04.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\gerge\\.nuget\\packages\\microsoft.toolkit.mvvm\\7.1.2\\microsoft.toolkit.mvvm.7.1.2.nupkg.sha512"
+  ],
   "logs": []
 }
