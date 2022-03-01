@@ -44,6 +44,7 @@
             <Button Content="Add" Command="{Binding AddToArmyCommand}" Margin="10" Padding="10" />
             <Button Content="Remove" Command="{Binding RemoveFromArmyCommand}" Margin="10" Padding="10" />
             <Button Content="Edit" Command="{Binding EditHeroCommand}" Margin="10" Padding="10" />
+            <Button Content="SAVE" Command="{Binding EditHeroCommand}" Margin="10" Padding="10" />
             <Label HorizontalContentAlignment="Center" FontSize="14"
                 Content="{Binding AvgPower}" ContentStringFormat="Power: {0}" />
             <ProgressBar Height="20" Maximum="10" 

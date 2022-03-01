@@ -15,5 +15,6 @@ namespace GUI_Lab04.Logic
         void EditHero(Hero heroToEdit);
         void RemoveFromArmy(Hero heroToRemove);
         void SetupArmies(IList<Hero> leftArmy, IList<Hero> rightArmy);
+        void Save();
     }
 }

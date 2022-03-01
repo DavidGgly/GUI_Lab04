@@ -1,7 +1,9 @@
 ﻿using GUI_Lab04.Model;
 using Microsoft.Toolkit.Mvvm.Messaging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +24,10 @@ namespace GUI_Lab04.Logic
         public HeroLogic(IMessenger messenger)
         {
             this.messenger = messenger;
+        }
+
+        public HeroLogic()
+        {
         }
 
         public void SetupArmies(IList<Hero> leftArmy, IList<Hero> rightArmy)
@@ -49,6 +55,15 @@ namespace GUI_Lab04.Logic
         public void EditHero(Hero heroToEdit)
         {
 
+        }
+
+        public void Save()
+        {
+            string jsonLeft = JsonConvert.SerializeObject(heroesLeft);
+            string jsonRight = JsonConvert.SerializeObject(heroesRight);
+
+            File.WriteAllText("armyLeft.json", jsonLeft);
+            File.WriteAllText("armyRight.json", jsonRight);
         }
     }
 }
