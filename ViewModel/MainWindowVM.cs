@@ -1,6 +1,7 @@
 ﻿using GUI_Lab04.Logic;
 using GUI_Lab04.Model;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,11 +21,6 @@ namespace GUI_Lab04.ViewModel
 
         public ObservableCollection<Hero> armyLeft;
         public ObservableCollection<Hero> armyRight;
-
-        public MainWindowVM(IHeroLogic logic)
-        {
-            this.logic = logic;
-        }
 
         public Hero SelectedFromLeft
         {
@@ -54,8 +50,8 @@ namespace GUI_Lab04.ViewModel
         }
 
         public MainWindowVM()
+            : this(IsInDesignMode ? null : Ioc.Default.GetService<IHeroLogic>())
         {
-
         }
 
         public MainWindowVM(IHeroLogic logic)
