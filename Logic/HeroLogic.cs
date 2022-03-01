@@ -15,6 +15,10 @@ namespace GUI_Lab04.Logic
         IList<Hero> heroesRight;
         IMessenger messenger;
 
+        public double AvgPower => heroesRight.Count != 0 ? heroesRight.Average(p => p.Power) : 0;
+
+        public double AvgSpeed => heroesRight.Count != 0 ? heroesRight.Average(s => s.Speed) : 0;
+
         public HeroLogic(IMessenger messenger)
         {
             this.messenger = messenger;
