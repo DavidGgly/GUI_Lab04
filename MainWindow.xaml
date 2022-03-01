@@ -4,15 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI_Lab04"
+        xmlns:vms="clr-namespace:GUI_Lab04.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <vms:MainWindowVM />
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0" ItemsSource="{Binding Heroes}" SelectedItem="{Binding SelectedHero}" HorizontalContentAlignment="Stretch">
+        <ListBox Grid.Column="0" ItemsSource="{Binding ArmyLeft}" SelectedItem="{Binding SelectedFromLeft}" HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Black" BorderThickness="1">
@@ -37,27 +41,28 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="1">
-            <Button Content="Add" Command="{Binding AddCommand}" Margin="10" Padding="10" />
-            <Button Content="Remove" Command="{Binding RemoveCommand}" Margin="10" Padding="10" />
-            <Button Content="Edit" Command="{Binding EditCommand}" Margin="10" Padding="10" />
+            <Button Content="Add" Command="{Binding AddToArmyCommand}" Margin="10" Padding="10" />
+            <Button Content="Remove" Command="{Binding RemoveFromArmyCommand}" Margin="10" Padding="10" />
+            <Button Content="Edit" Command="{Binding EditHeroCommand}" Margin="10" Padding="10" />
             <Label HorizontalContentAlignment="Center" FontSize="14"
-                Content="{Binding AVGPower}" ContentStringFormat="Power: {0}" />
+                Content="{Binding AvgPower}" ContentStringFormat="Power: {0}" />
             <ProgressBar Height="20" Maximum="10" 
-                         Value="{Binding AVGPower, Mode=OneWay}" Margin="10"
-                         Foreground="{Binding AVGPower, Mode=OneWay}"/>
+                         Value="{Binding AvgPower, Mode=OneWay}" Margin="10"
+                         Foreground="{Binding AvgPower, Mode=OneWay}"/>
             <Label HorizontalContentAlignment="Center" FontSize="14"
-                Content="{Binding AVGSpeed}" ContentStringFormat="Speed: {0}" />
+                Content="{Binding AvgSpeed}" ContentStringFormat="Speed: {0}" />
             <ProgressBar Height="20" Maximum="10" 
-                         Value="{Binding AVGSpeed, Mode=OneWay}" Margin="10"
-                         Foreground="{Binding AVGSpeed, Mode=OneWay}"/>
+                         Value="{Binding AvgSpeed, Mode=OneWay}" Margin="10"
+                         Foreground="{Binding AvgSpeed, Mode=OneWay}"/>
         </StackPanel>
-        <ListBox Grid.Column="2" ItemsSource="{Binding Army}" SelectedItem="{Binding SelectedFromArmy}" FontSize="16">
+        <ListBox Grid.Column="2" ItemsSource="{Binding ArmyRight}" SelectedItem="{Binding SelectedFromRight}" FontSize="16">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="{Binding Type}" />
+                        <Label Content="{Binding Name}" />
                         <Label Content="{Binding Power}" ContentStringFormat="[{0}]" />
                         <Label Content="{Binding Speed}" ContentStringFormat="[{0}]" />
+                        <Label Content="{Binding Villain}" ContentStringFormat="[{0}]" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

@@ -17,7 +17,7 @@ namespace GUI_Lab04.Model
         public string Name { get => name; set => SetProperty(ref name, value); }
         public int Power { get => power; set => SetProperty(ref power, value); }
         public int Speed { get => speed; set => SetProperty(ref speed, value); }
-        public VillainEnum Villain { get => villain; set => SetProperty(ref villain, value); }
+        public string Villain { get => villain.ToString(); set => SetProperty(ref villain, value); }
 
         public Hero DeepCopy()
         {

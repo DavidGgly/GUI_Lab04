@@ -21,8 +21,8 @@ namespace GUI_Lab04.ViewModel
         Hero selectedHeroLeft;
         Hero selectedHeroRight;
 
-        public ObservableCollection<Hero> armyLeft;
-        public ObservableCollection<Hero> armyRight;
+        public ObservableCollection<Hero> ArmyLeft;
+        public ObservableCollection<Hero> ArmyRight;
 
         public double AvgPower
         {
@@ -40,6 +40,8 @@ namespace GUI_Lab04.ViewModel
             set
             {
                 SetProperty(ref selectedHeroLeft, value);
+                (AddToArmyCommand as RelayCommand).NotifyCanExecuteChanged();
+                (RemoveFromArmyCommand as RelayCommand).NotifyCanExecuteChanged();
             }
         }
 
@@ -49,6 +51,7 @@ namespace GUI_Lab04.ViewModel
             set
             {
                 SetProperty(ref selectedHeroRight, value);
+                (EditHeroCommand as RelayCommand).NotifyCanExecuteChanged();
             }
         }
 
@@ -74,20 +77,20 @@ namespace GUI_Lab04.ViewModel
         {
             this.logic = logic;
 
-            armyLeft = new ObservableCollection<Hero>();
-            armyRight = new ObservableCollection<Hero>();
+            ArmyLeft = new ObservableCollection<Hero>();
+            ArmyRight = new ObservableCollection<Hero>();
 
-            armyLeft.Add(new Hero() { Name = "Hero_1", Power = 1, Speed = 10, Villain = VillainEnum.Evil });
-            armyLeft.Add(new Hero() { Name = "Hero_2", Power = 3, Speed = 8, Villain = VillainEnum.NotSoGood });
-            armyLeft.Add(new Hero() { Name = "Hero_3", Power = 5, Speed = 6, Villain = VillainEnum.Good });
-            armyLeft.Add(new Hero() { Name = "Hero_4", Power = 7, Speed = 4, Villain = VillainEnum.Good });
-            armyLeft.Add(new Hero() { Name = "Hero_5", Power = 9, Speed = 2, Villain = VillainEnum.NotSoGood });
-            armyLeft.Add(new Hero() { Name = "Hero_6", Power = 10, Speed = 1, Villain = VillainEnum.Evil });
+            ArmyLeft.Add(new Hero() { Name = "Hero_1", Power = 1, Speed = 10, Villain = VillainEnum.Evil });
+            ArmyLeft.Add(new Hero() { Name = "Hero_2", Power = 3, Speed = 8, Villain = VillainEnum.NotSoGood });
+            ArmyLeft.Add(new Hero() { Name = "Hero_3", Power = 5, Speed = 6, Villain = VillainEnum.Good });
+            ArmyLeft.Add(new Hero() { Name = "Hero_4", Power = 7, Speed = 4, Villain = VillainEnum.Good });
+            ArmyLeft.Add(new Hero() { Name = "Hero_5", Power = 9, Speed = 2, Villain = VillainEnum.NotSoGood });
+            ArmyLeft.Add(new Hero() { Name = "Hero_6", Power = 10, Speed = 1, Villain = VillainEnum.Evil });
 
-            armyRight.Add(armyLeft[2].DeepCopy());
-            armyRight.Add(armyLeft[5].DeepCopy());
+            ArmyRight.Add(ArmyLeft[2].DeepCopy());
+            ArmyRight.Add(ArmyLeft[4].DeepCopy());
 
-            logic.SetupArmies(armyLeft, armyRight);
+            logic.SetupArmies(ArmyLeft, ArmyRight);
 
             AddToArmyCommand = new RelayCommand(() => logic.AddToArmy(SelectedFromLeft), () => SelectedFromLeft != null);
             RemoveFromArmyCommand = new RelayCommand(() => logic.RemoveFromArmy(SelectedFromRight), () => SelectedFromRight != null);
