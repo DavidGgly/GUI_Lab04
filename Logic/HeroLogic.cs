@@ -1,4 +1,5 @@
 ﻿using GUI_Lab04.Model;
+using GUI_Lab04.Services;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace GUI_Lab04.Logic
         IList<Hero> heroesLeft;
         IList<Hero> heroesRight;
         IMessenger messenger;
+        IHeroEditorService editorService;
 
         public double AvgPower => heroesRight.Count != 0 ? heroesRight.Average(p => p.Power) : 0;
 
@@ -48,7 +50,7 @@ namespace GUI_Lab04.Logic
 
         public void EditHero(Hero heroToEdit)
         {
-
+            editorService.Edit(heroToEdit);
         }
     }
 }
