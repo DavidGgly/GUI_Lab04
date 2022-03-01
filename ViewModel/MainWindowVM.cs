@@ -21,8 +21,8 @@ namespace GUI_Lab04.ViewModel
         Hero selectedHeroLeft;
         Hero selectedHeroRight;
 
-        public ObservableCollection<Hero> ArmyLeft;
-        public ObservableCollection<Hero> ArmyRight;
+        public ObservableCollection<Hero> ArmyLeft { get; set; }
+        public ObservableCollection<Hero> ArmyRight { get; set; }
 
         public double AvgPower
         {
